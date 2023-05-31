@@ -5,7 +5,7 @@ import './CostForm.css';
 
 const CostForm = (props) => {
 
-  const [name, setName] = useState('');
+  const [description, setName] = useState('');
   const [amount, setAmount] = useState('');
   const [date, setDate] = useState('');
 
@@ -26,7 +26,7 @@ const CostForm = (props) => {
     event.preventDefault();
 
     const costData = {
-      name,
+      description,
       amount,
       date: new Date(date),
     };
@@ -44,7 +44,7 @@ const CostForm = (props) => {
       <div className='new-cost__controls'>
         <div className='new-cost__control'>
           <label>Наименование</label>
-          <input type='text' value={name} onChange={nameChangeHandler}/>
+          <input type='text' value={description} onChange={nameChangeHandler}/>
         </div>
         <div className='new-cost__control'>
           <label>Стоимость</label>
@@ -52,10 +52,11 @@ const CostForm = (props) => {
         </div>
         <div className='new-cost__control'>
           <label>Дата</label>
-          <input type='date' min='2019-01-01' step='2023-12-31'/>
+          <input value={date} onChange={dateChangeHandler} type='date' min='2019-01-01' step='2023-12-31'/>
         </div>
         <div className='new-cost__actions'>
-          <button type='submit' value={date} onChange={dateChangeHandler}>Добавить расход</button>
+          <button type='submit'>Добавить расход</button>
+          <button type='button' onClick={props.onCancel}>Отмена</button>
         </div>
       </div>
     </form>
